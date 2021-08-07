@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function ToDoItem(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <li>
+      <label>
+        <input type="checkbox" checked={props.item.done} />
+        {props.item.name}
+      </label>
+    </li>
+  );
+}
+
+function ToDoList(props) {
+  return (
+    <ul className="todo-list">
+      {props.items.map((item) => (
+        <ToDoItem key={item.id} item={item} />
+      ))}
+    </ul>
+  );
+}
+
+function App() {
+  const items = [
+    { id: 1, name: "dance", done: false },
+    { id: 2, name: "eigyoukatudou", done: true},
+    { id: 3, name: "magazine", done: false},
+  ];
+
+  return (
+    <dev>
+      <h1>ToDo Mock</h1>
+      <ToDoList items={items} />
+    </dev>
   );
 }
 
